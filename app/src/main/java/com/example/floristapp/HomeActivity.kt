@@ -18,20 +18,15 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Inisialisasi RecyclerView
-        // Catatan: Pastikan ID di activity_home.xml sudah diubah menjadi rv_plant
         rvPlant = findViewById(R.id.rv_plant)
         rvPlant.setHasFixedSize(true)
 
-        // Muat data dari strings.xml
         listPlants.addAll(getListPlants())
 
-        // Tampilkan RecyclerView
         showRecyclerList()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Setup Bottom Nav Listener
         val navigateToOrder = {
             val intent = Intent(this, OrderActivity::class.java)
             startActivity(intent)
@@ -43,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_order -> {
-                    // Pindah ke Order Activity saat tombol Bottom Nav diklik
                     navigateToOrder()
                     true
                 }
@@ -57,9 +51,6 @@ class HomeActivity : AppCompatActivity() {
         bottomNavigationView.selectedItemId = R.id.nav_home
     }
 
-    // --- FUNGSI HELPER UNTUK DATA DAN RECYCLERVIEW ---
-
-    // Fungsi untuk mengambil data array dari resources
     private fun getListPlants(): ArrayList<Plant> {
         val dataName = resources.getStringArray(R.array.data_plant_name)
         val dataDescription = resources.getStringArray(R.array.data_plant_description)
@@ -73,19 +64,15 @@ class HomeActivity : AppCompatActivity() {
         return list
     }
 
-    // Fungsi untuk mengatur RecyclerView, Adapter, dan Click Listener
     private fun showRecyclerList() {
         rvPlant.layoutManager = LinearLayoutManager(this)
         val listPlantAdapter = ListPlantAdapter(listPlants)
         rvPlant.adapter = listPlantAdapter
 
-        // Implementasi OnItemClickCallback
         listPlantAdapter.setOnItemClickCallback(object : ListPlantAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Plant) {
-                // Aksi saat item diklik: tampilkan Toast dan pindah ke OrderActivity
                 Toast.makeText(this@HomeActivity, "Memesan ${data.name}", Toast.LENGTH_SHORT).show()
 
-                // Navigasi ke Order Activity
                 val intent = Intent(this@HomeActivity, OrderActivity::class.java)
                 startActivity(intent)
             }

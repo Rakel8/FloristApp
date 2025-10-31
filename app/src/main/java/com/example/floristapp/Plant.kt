@@ -7,6 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class Plant(
     val name: String,
     val description: String,
-    // photoResourceName akan menyimpan nama file drawable (misalnya "tanaman1")
     val photoResourceName: String
 ) : Parcelable

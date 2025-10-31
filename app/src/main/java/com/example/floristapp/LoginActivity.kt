@@ -12,12 +12,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Dapatkan referensi elemen UI
         val usernameEditText: EditText = findViewById(R.id.et_username)
         val passwordEditText: EditText = findViewById(R.id.et_password)
         val loginButton: Button = findViewById(R.id.btn_login_form)
 
-        // Listener untuk tombol Login di formulir
         loginButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -26,10 +24,9 @@ class LoginActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show()
 
-                // PINDAH KE HOME ACTIVITY
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
-                finish() // Tutup LoginActivity agar user tidak bisa kembali dengan tombol back
+                finish()
 
             } else {
                 Toast.makeText(this, "Username dan Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()

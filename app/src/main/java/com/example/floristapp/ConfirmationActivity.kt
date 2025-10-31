@@ -13,16 +13,14 @@ class ConfirmationActivity : AppCompatActivity() {
 
         val understandButton: Button = findViewById(R.id.btn_mengerti)
 
-        // --- Listener untuk Tombol "Mengerti" ---
         understandButton.setOnClickListener {
             Toast.makeText(this, "Kembali ke Home Screen...", Toast.LENGTH_SHORT).show()
 
-            // Membuat Intent untuk kembali ke HomeActivity dan menghapus semua activity sebelumnya
             val intent = Intent(this, HomeActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             }
             startActivity(intent)
-            finish() // Menutup ConfirmationActivity
+            finish()
         }
     }
 }

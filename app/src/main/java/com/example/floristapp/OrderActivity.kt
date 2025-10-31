@@ -15,23 +15,19 @@ class OrderActivity : AppCompatActivity() {
         val kirimButton: Button = findViewById(R.id.btn_kirim)
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // --- Listener untuk Tombol "Kirim" ---
         kirimButton.setOnClickListener {
-            // Pindah ke AddressFormActivity
             val intent = Intent(this, AddressFormActivity::class.java)
             startActivity(intent)
         }
 
-        // --- Listener untuk Bottom Navigation Bar ---
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    // Kembali ke HomeActivity (gunakan finish() jika ingin menutup OrderActivity)
                     finish()
                     true
                 }
                 R.id.nav_order -> {
-                    true // Sudah di Order Page
+                    true
                 }
                 R.id.nav_profile -> {
                     Toast.makeText(this, "Anda mengklik Profile. Page Profile tidak dibuat!", Toast.LENGTH_LONG).show()
@@ -41,7 +37,6 @@ class OrderActivity : AppCompatActivity() {
             }
         }
 
-        // Set item 'Order' sebagai yang terpilih saat Activity ini dibuka
         bottomNavigationView.selectedItemId = R.id.nav_order
     }
 }

@@ -12,13 +12,11 @@ class RegisterFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_form)
 
-        // Dapatkan referensi elemen UI
         val fullNameEditText: EditText = findViewById(R.id.et_full_name)
         val usernameEditText: EditText = findViewById(R.id.et_reg_username)
         val passwordEditText: EditText = findViewById(R.id.et_reg_password)
         val registerButton: Button = findViewById(R.id.btn_register_form_submit)
 
-        // Listener untuk tombol Register di formulir
         registerButton.setOnClickListener {
             val fullName = fullNameEditText.text.toString()
             val username = usernameEditText.text.toString()
@@ -28,10 +26,9 @@ class RegisterFormActivity : AppCompatActivity() {
 
                 Toast.makeText(this, "Pendaftaran Berhasil!", Toast.LENGTH_SHORT).show()
 
-                // PINDAH KE HOME ACTIVITY
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
-                finish() // Tutup RegisterFormActivity
+                finish()
 
             } else {
                 Toast.makeText(this, "Semua Field Pendaftaran harus diisi!", Toast.LENGTH_SHORT).show()
