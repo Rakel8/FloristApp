@@ -3,53 +3,47 @@ package com.example.floristapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
+
+    // 1. Deklarasi RecyclerView dan List Plant
+    private lateinit var rvPlant: RecyclerView
+    private val listPlants = ArrayList<Plant>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        // Inisialisasi RecyclerView
+        // Catatan: Pastikan ID di activity_home.xml sudah diubah menjadi rv_plant
+        rvPlant = findViewById(R.id.rv_plant)
+        rvPlant.setHasFixedSize(true)
+
+        // Muat data dari strings.xml
+        listPlants.addAll(getListPlants())
+
+        // Tampilkan RecyclerView
+        showRecyclerList()
+
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Dapatkan referensi ke setiap list item
-        val itemTanaman1: LinearLayout = findViewById(R.id.item_tanaman_1)
-        val itemTanaman2: LinearLayout = findViewById(R.id.item_tanaman_2)
-        val itemTanaman3: LinearLayout = findViewById(R.id.item_tanaman_3)
-
-        // --- Listener untuk List Item ---
-
-        // Fungsi navigasi yang akan digunakan berulang
+        // Setup Bottom Nav Listener
         val navigateToOrder = {
             val intent = Intent(this, OrderActivity::class.java)
             startActivity(intent)
         }
 
-        // --- Listener untuk List Item ---
-        itemTanaman1.setOnClickListener {
-            Toast.makeText(this, "Tanaman 1 dimasukkan ke keranjang!", Toast.LENGTH_SHORT).show()
-            navigateToOrder() // Panggil fungsi navigasi
-        }
-        // ... lakukan hal yang sama untuk itemTanaman2 dan itemTanaman3 ...
-        itemTanaman2.setOnClickListener {
-            Toast.makeText(this, "Tanaman 2 dimasukkan ke keranjang!", Toast.LENGTH_SHORT).show()
-            navigateToOrder()
-        }
-        itemTanaman3.setOnClickListener {
-            Toast.makeText(this, "Tanaman Keren dimasukkan ke keranjang!", Toast.LENGTH_SHORT).show()
-            navigateToOrder()
-        }
-
-        // --- Listener untuk Bottom Navigation Bar ---
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     true
                 }
                 R.id.nav_order -> {
-                    // PINDAH KE ORDER ACTIVITY saat tombol Bottom Nav diklik
+                    // Pindah ke Order Activity saat tombol Bottom Nav diklik
                     navigateToOrder()
                     true
                 }
@@ -60,8 +54,41 @@ class HomeActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
-        // Pastikan item Home terpilih saat pertama kali dibuka
         bottomNavigationView.selectedItemId = R.id.nav_home
+    }
+
+    // --- FUNGSI HELPER UNTUK DATA DAN RECYCLERVIEW ---
+
+    // Fungsi untuk mengambil data array dari resources
+    private fun getListPlants(): ArrayList<Plant> {
+        val dataName = resources.getStringArray(R.array.data_plant_name)
+        val dataDescription = resources.getStringArray(R.array.data_plant_description)
+        val dataPhotoName = resources.getStringArray(R.array.data_photo_drawable_name)
+
+        val list = ArrayList<Plant>()
+        for (i in dataName.indices) {
+            val plant = Plant(dataName[i], dataDescription[i], dataPhotoName[i])
+            list.add(plant)
+        }
+        return list
+    }
+
+    // Fungsi untuk mengatur RecyclerView, Adapter, dan Click Listener
+    private fun showRecyclerList() {
+        rvPlant.layoutManager = LinearLayoutManager(this)
+        val listPlantAdapter = ListPlantAdapter(listPlants)
+        rvPlant.adapter = listPlantAdapter
+
+        // Implementasi OnItemClickCallback
+        listPlantAdapter.setOnItemClickCallback(object : ListPlantAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Plant) {
+                // Aksi saat item diklik: tampilkan Toast dan pindah ke OrderActivity
+                Toast.makeText(this@HomeActivity, "Memesan ${data.name}", Toast.LENGTH_SHORT).show()
+
+                // Navigasi ke Order Activity
+                val intent = Intent(this@HomeActivity, OrderActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

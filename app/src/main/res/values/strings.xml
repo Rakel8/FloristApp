@@ -1,3 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FloristApp</string>
+
+    <string name="title_hello_user">Halo User,</string>
+    <string name="title_tanaman_section">Tanaman</string>
+    <string name="order_list_content">Lidah Mertua\nLidah Buaya\nPohon Naga Madagaskar</string>
+
+    <string-array name="data_plant_name">
+        <item>Lidah Mertua</item>
+        <item>Lidah Buaya</item>
+        <item>Pohon Naga Madagaskar</item>
+        <item>Sirih Gading</item>
+        <item>Monstera Deliciosa</item>
+        <item>Kaktus Natal</item>
+        <item>Aglaonema Merah</item>
+        <item>Paku Sarang Burung</item>
+        <item>Bunga Kertas</item>
+        <item>Kuping Gajah</item>
+    </string-array>
+
+    <string-array name="data_plant_description">
+        <item>Tanaman Sansevieria berdaun tegak panjang, hijau tua dengan tepi atau garis kuning mencolok.</item>
+        <item>Tanaman sukulen dengan daun tebal berdaging, ujung meruncing, berwarna hijau, mengandung gel bermanfaat.</item>
+        <item>Tanaman berdaun tipis memanjang, hijau dengan tepi kemerahan, tumbuh tegak dari batang ramping.</item>
+        <item>Tanaman merambat yang mudah dirawat, memiliki daun berbentuk hati berwarna hijau dengan corak kuning.</item>
+        <item>Tanaman hias tropis dengan daun lebar berwarna hijau cerah, berlubang unik yang menjadi ciri khas utama.</item>
+        <item>Tanaman sukulen yang berbunga saat musim dingin, memiliki segmen daun pipih menggantung dari potnya.</item>
+        <item>Tanaman hias populer berdaun indah, corak warna didominasi oleh merah muda dan merah yang menawan.</item>
+        <item>Jenis paku dengan daun bergelombang besar, tumbuh melingkar menyerupai bentuk sarang di pohon.</item>
+        <item>Tanaman hias dengan bunga berwarna cerah yang kecil, dikelilingi oleh kelopak kertas yang tipis.</item>
+        <item>Tanaman Caladium yang memiliki daun lebar dan besar, bentuknya menyerupai hati dan coraknya beragam.</item>
+    </string-array>
+
+    <string-array name="data_photo_drawable_name">
+        <item>tanaman1</item>
+        <item>tanaman2</item>
+        <item>tanaman3</item>
+        <item>tanaman4</item>
+        <item>tanaman5</item>
+        <item>tanaman6</item>
+        <item>tanaman7</item>
+        <item>tanaman8</item>
+        <item>tanaman9</item>
+        <item>tanaman10</item>
+    </string-array>
 </resources>
